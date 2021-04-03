@@ -1,5 +1,7 @@
 import app.core.Human; 
 import app.helpers.Gender; 
+import app.utils.Validator;
+import app.exceptions.ValidationException;
 
 
 public class Person extends Human {
@@ -50,15 +52,32 @@ public class Person extends Human {
     sam.gender = Gender.MALE;
     sam.setLastName("Zaman");
 
-    Kraton.PhysicalAppearance samInfo = sam.new PhysicalAppearance(170, 50);
-    samInfo.getInfo();
 
-    sam.printFullName();
-    sam.printOriginFullName();
-    sam.run();
-    System.out.println(sam.getEnergy());
-    System.out.println(sam.isAlive());
-    System.out.println( sam instanceof Kraton );
+    try {
+      Validator.validate(0);
+      if ( 1 > 2 ) {
+        throw new NullPointerException("Data cant be null");
+      }  
+    } catch ( Throwable err ){
+      err.printStackTrace();
+    } finally {
+      System.out.println("Koneksi terputus");
+    }
+
+    //} catch(ValidationException | NullPointerException err) {
+      //System.out.println(err.getMessage());
+    //} 
+
+
+    //Kraton.PhysicalAppearance samInfo = sam.new PhysicalAppearance(170, 50);
+    //samInfo.getInfo();
+
+    //sam.printFullName();
+    //sam.printOriginFullName();
+    //sam.run();
+    //System.out.println(sam.getEnergy());
+    //System.out.println(sam.isAlive());
+    //System.out.println( sam instanceof Kraton );
   }
 
 }
