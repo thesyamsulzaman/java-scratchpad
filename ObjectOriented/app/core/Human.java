@@ -1,7 +1,9 @@
 package app.core;
 
 import app.lib.Action;
+import app.helpers.Gifted;
 
+@Gifted(name = "Human", types = { "Cry", "Fighting Trump" })
 public class Human implements Action{
   private int energy;
 

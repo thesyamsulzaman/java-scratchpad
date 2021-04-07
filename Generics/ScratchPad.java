@@ -1,11 +1,28 @@
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class ScratchPad {
   public static void main(String[] args) {
 
-    Creature.Zombie zombie = new Creature.Zombie();
-    Creature.Incubate<Creature.Zombie> nemesis = new Creature.Incubate<>(zombie);
-    nemesis.start();
-    nemesis.run();
+
+    Dinosaur[] jurrasic = {
+       new Dinosaur("Tyranosaurs Rex", "Carnivore"),
+       new Dinosaur("Alosaur", "Carnivore"),
+       new Dinosaur("Parasaulopus", "Carnivore"),
+       new Dinosaur("Ptyrodactile", "Carnivore"),
+    };
+
+    //Arrays.sort(jurrasic);
+
+    //System.out.println(Arrays.toString(jurrasic));
+
+    //Creature.Zombie zombie = new Creature.Zombie();
+    //Creature.Mutan mutan = new Creature.Mutan();
+
+    //Creature.Incubate<Creature.Zombie> nemesis = new Creature.Incubate<>(zombie);
+    //nemesis.start();
+    //nemesis.run();
+    //nemesis.getEnergy();
 
     //Product<String, Integer> burger = new Product<>("Mac n Cheese", 2);
     //System.out.println(burger.getInfo());
@@ -21,6 +38,36 @@ public class ScratchPad {
   }
 }
 
+class Dinosaur implements Comparable<Dinosaur> {
+  
+  private String name;
+  private String type;
+
+  Dinosaur(String name, String type) {
+    this.name = name;
+    this.type = type;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getInfo() {
+    return this.name + " - " + this.type;
+  }
+
+  @Override 
+  public int compareTo(Dinosaur dinosaur) {
+    return this.name.compareTo(dinosaur.name);
+  }
+
+  public String toString() {
+    return "\n Dinosaur { name=" + this.name + ", type="+ this.type + " } \n";
+  }
+
+
+}
+
 
 
 class Creature<T> {
@@ -29,7 +76,17 @@ class Creature<T> {
    void run();
   }
 
-  public static abstract class Human {}
+  public static abstract class Human {
+    private int energy;
+
+    Human() {
+      this.energy = 100;
+    }
+
+    public void getEnergy() {
+      System.out.println(this.energy);
+    }
+  }
 
   public static class Mutan extends Human implements Action {
     public void run() { 
@@ -59,6 +116,10 @@ class Creature<T> {
 
     public void run() {
       this.creature.run(); 
+    }
+
+    public void getEnergy() {
+      this.creature.getEnergy();
     }
   }
 

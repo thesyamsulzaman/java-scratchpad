@@ -1,12 +1,18 @@
 import app.core.Human; 
 import app.helpers.Gender; 
 import app.utils.Validator;
-import app.exceptions.ValidationException;
+
+import app.helpers.NotBlank;
 
 
 public class Person extends Human {
+
+  @NotBlank
   String first_name;
+
+  @NotBlank
   String last_name;
+
   Gender gender;
 
   public class PhysicalAppearance {
@@ -45,24 +51,20 @@ public class Person extends Human {
 
   public static void main(String[] args) {
 
-    Kraton sam = new Kraton();
+    Person sam = new Person();
 
     sam.setEnergy(100);
-    sam.setFirstName("Syamsul");
+    sam.setFirstName(null);
+    sam.setLastName(null);
     sam.gender = Gender.MALE;
-    sam.setLastName("Zaman");
+    Validator.validate(sam);
 
-
-    try {
-      Validator.validate(0);
-      if ( 1 > 2 ) {
-        throw new NullPointerException("Data cant be null");
-      }  
-    } catch ( Throwable err ){
-      err.printStackTrace();
-    } finally {
-      System.out.println("Koneksi terputus");
-    }
+    //try {
+    //} catch ( Throwable err ){
+      //System.out.println("Error anjir");
+    //} finally {
+      //System.out.println("Koneksi terputus");
+    //}
 
     //} catch(ValidationException | NullPointerException err) {
       //System.out.println(err.getMessage());

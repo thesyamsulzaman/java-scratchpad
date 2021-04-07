@@ -70,7 +70,7 @@ public class Scratchpad {
     // { Random Class }
     // { String Tokenizer}
     // { Number Class }
-    // { Number Class }
+    // { Big Number Class }
     // { Math Class }
     // { Big Number }
     // { Big Integer }
